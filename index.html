@@ -28,7 +28,7 @@
 
     <div class="ui">
       <div class="title">Happy birthday my baby — <span style="color:#ff3d7a">Mona</span> 🎉</div>
-      <div class="subtitle">A special cake just for you 💕</div>
+      <div class="subtitle" style="background:white;">A special cake just for you 💕, semoga adek panjang umur, dan segala kebaikan akan datang untuk adek. Selalu diberi keselamatan kebahagiaan, mas doakan yang terbaik untuk sempronya lancar love you baby, thank you for everything 💕</div>
     </div>
   </div>
 
@@ -135,7 +135,7 @@
 
     // photo frame above the cake
     const frameGroup = new THREE.Group();
-    const frameTex = new THREE.TextureLoader().load('https://nulliversewebsite.github.io/happybirthday/new~1.jpg');
+    const frameTex = new THREE.TextureLoader().load('https://nulliversewebsite.github.io/happybirthday/bdubz.jpg');
     const frameMat = new THREE.MeshBasicMaterial({map:frameTex});
     const frameGeo = new THREE.PlaneGeometry(1.2,1.6);
     const photo = new THREE.Mesh(frameGeo, frameMat);
@@ -161,17 +161,17 @@
       ctx.fillRect(24,24,c.width-48,c.height-48);
       ctx.fillStyle = '#4a2350';
       ctx.textAlign = 'center';
-      ctx.font = 'bold 36px serif';
+      ctx.font = 'bold 80px serif';
       ctx.fillText(text, c.width/2, c.height/2+8);
       const tex = new THREE.CanvasTexture(c);
       const mat = new THREE.MeshBasicMaterial({map:tex});
       const geo = new THREE.PlaneGeometry(1.4,0.45);
       const mesh = new THREE.Mesh(geo, mat);
-      mesh.position.set(0,1.02,1.6);
+      mesh.position.set(0,1.57,1.6);
       mesh.rotation.x = -0.12;
       return mesh;
     }
-    cake.add(makePlaque('Happy birthday my baby'));
+    cake.add(makePlaque('22th'));
 
     scene.add(cake);
 
@@ -204,6 +204,8 @@
       hearts.add(m);
     }
     scene.add(hearts);
+    scene.position.y = 2;
+    scene.scale.set(0.9, 0.9, 0.9);
 
     let baseY = cake.position.y;
     let last = 0;
@@ -232,9 +234,54 @@
     });
   })();
   </script>
+
+
+  <!-- 🎁 Overlay hadiah -->
+<div id="gift-overlay" style="
+  position:fixed;
+  inset:0;
+  background:#fff8fb;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+">
+  <h2 style="color:#6c4a8a;font-size:22px;margin-bottom:20px;">🎁 Klik untuk buka hadiah 🎁</h2>
+  <button id="open-gift-btn" style="
+    padding:10px 20px;
+    background:#ff6b9a;
+    color:white;
+    border:none;
+    border-radius:999px;
+    font-weight:600;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  ">Buka Hadiah</button>
+</div>
+
+<audio id="bg-music" src="https://nulliversewebsite.github.io/happybirthday/Calum Scott - You Are The Reason (Official Video).mp3"></audio> <!-- Ganti dengan link lagu kamu -->
+
+<script>
+  const overlay = document.getElementById('gift-overlay');
+  const btn = document.getElementById('open-gift-btn');
+  const music = document.getElementById('bg-music');
+
+  btn.addEventListener('click', () => {
+    overlay.style.transition = 'opacity 0.6s ease';
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.style.display = 'none', 600);
+    music.currentTime = 16
+    music.play().catch(() => console.log('User interaction required for autoplay.'));
+  });
+</script>
+
+
+
 </body>
 </html>
-
 
 
 
