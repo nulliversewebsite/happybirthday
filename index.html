@@ -136,6 +136,9 @@
     // photo frame above the cake
     const frameGroup = new THREE.Group();
     const frameTex = new THREE.TextureLoader().load('https://nulliversewebsite.github.io/happybirthday/bdubz.jpg');
+    frameTex.encoding = THREE.sRGBEncoding;
+    frameTex.needsUpdate = true;
+    
     const frameMat = new THREE.MeshBasicMaterial({map:frameTex});
     const frameGeo = new THREE.PlaneGeometry(1.2,1.6);
     const photo = new THREE.Mesh(frameGeo, frameMat);
